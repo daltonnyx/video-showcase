@@ -17,10 +17,10 @@ remoteVideo.autoplay = true;
 async function beforeAnswer(peerConnection) {
   const localStream = await window.navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: true
+    video: { width: 640, height: 480 }
   });
 
-  localVideo.srcObject = localStream;
+  //localVideo.srcObject = localStream;
   localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
 
   const remoteStream = new MediaStream(peerConnection.getReceivers().map(receiver => receiver.track));
